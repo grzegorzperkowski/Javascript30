@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 class="timeHeader"></h1>
+    <div class="clockFace">
+        <div class="hand hour"></div>
+        <div class="hand min"></div>
+        <div class="hand sec"></div>
+    </div>
+
+</body>
+
+<script>
+
+    const minHand = document.querySelector(".hand.min")
+    const hourHand = document.querySelector(".hand.hour")
+    const secHand = document.querySelector(".hand.sec")
+    const time = document.querySelector("h1")
+
+    function updateTime() {
+        const now = new Date()
+        time.innerText = now.getHours() + ":" + now.getMinutes();
+        const secondAngel = 270 + 360 * now.getSeconds() / 60
+        const minAngel = 270 + 360 * now.getMinutes() / 60
+        const hourAngel = 270 + 360 * now.getHours() / 12
+
+        console.log(`Hour: ${hourAngel}, min: ${minAngel}, sec: ${secondAngel}.`)
+
+        secHand.style.transform = `rotate(${secondAngel}deg)`
+        minHand.style.transform = `rotate(${minAngel}deg)`
+        hourHand.style.transform = `rotate(${hourAngel}deg)`
+    }
+
+    setInterval(updateTime, 1000)
+</script>
+
+</html>

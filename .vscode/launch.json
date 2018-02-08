@@ -18,5 +18,12 @@
             "sourceMaps": false,
             "file": "${workspaceFolder}/02Clock/index.html"
         }
+        {
+            "name": "02.Clock ver 2",
+            "type": "chrome",
+            "request": "launch",
+            "sourceMaps": false,
+            "file": "${workspaceFolder}/02Clock.ver2/index.html"
+        }
     ]
 }
