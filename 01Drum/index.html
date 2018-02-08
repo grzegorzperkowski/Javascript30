@@ -10,6 +10,8 @@
 </head>
 
 <body>
+    <div id="background"></div>
+    <h1 id="header">Press one of key (or click on it). Don't forget to turn on your speakers.</h1>
     <div class="keys">
         <div data-key="65" class="key">
             <kbd>A</kbd>
@@ -60,10 +62,16 @@
     <audio data-key="75" src="sounds/tom.wav"></audio>
     <audio data-key="76" src="sounds/tink.wav"></audio>
     <script>
-        window.addEventListener('keydown', (e) => {
-            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+        window.addEventListener('keydown', (e) => playSound(e.keyCode))
+        const keys = document.querySelectorAll(".key")
+        keys.forEach(e => e.addEventListener('transitionend', removeTransition))
+        keys.forEach(e => e.addEventListener('click', keyClicked))
+
+        function playSound(audioKey) {
+            const audio = document.querySelector(`audio[data-key="${audioKey}"]`)
             if (!audio) return
-            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+
+
             audio.currentTime = 0;
             var playPromise = audio.play();
 
@@ -75,27 +83,23 @@
                 });
             }
 
-
+            const key = document.querySelector(`.key[data-key="${audioKey}"]`)
             if (!key) return
 
             key.classList.add('playing');
-        })
-
-        function removeTransition(element){
-            console.log(element);
-
-            if(element.propertyName === 'transform' ) {
-                this.classList.remove('playing')
-            }
-
-
         }
 
-        const keys = document.querySelectorAll(".key")
-        keys.forEach(e => e.addEventListener('transitionend', removeTransition ))
+        function removeTransition(element) {
+            if (element.propertyName === 'transform') {
+                this.classList.remove('playing')
+            }
+        }
+
+        function keyClicked() {
+            playSound(this.getAttribute("data-key"))
+        }
 
     </script>
-
 </body>
 
 </html>
