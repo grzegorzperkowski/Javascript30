@@ -10,6 +10,13 @@
             "request": "launch",
             "sourceMaps": false,
             "file": "${workspaceFolder}/01Drum/index.html"
+        },
+        {
+            "name": "02.Clock",
+            "type": "chrome",
+            "request": "launch",
+            "sourceMaps": false,
+            "file": "${workspaceFolder}/02Clock/index.html"
         }
     ]
 }
